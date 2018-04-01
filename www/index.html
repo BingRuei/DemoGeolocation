@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova加載完成後會觸發
+    function onDeviceReady() {
+    }
+
+    function getCurrentPosition() {
+      // 定位資訊取得成功會呼叫這個
+      var onSuccess = function (position) {
+        alert('緯度: ' + position.coords.latitude + '\n' +
+          '經度: ' + position.coords.longitude + '\n' +
+          '海拔: ' + position.coords.altitude + '\n' +
+          '水平精度: ' + position.coords.accuracy + '\n' +
+          '垂直精度: ' + position.coords.altitudeAccuracy + '\n' +
+          '方向: ' + position.coords.heading + '\n' +
+          '速度: ' + position.coords.speed + '\n' +
+          '時間戳: ' + position.timestamp + '\n');
+      };
+
+      // 定位資訊取得失敗會呼叫這個
+      function onError(error) {
+        alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+      }
+
+      // 開始讀取定位資訊
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+  </script>
+
+  <button onclick="getCurrentPosition();">GET GEOLOCATION</button>
+</body>
+</html>
